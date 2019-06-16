@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script async>
+        //Задание 1
+        alert("Задание 1 (Смотреть консоль!)");
+        var simple = [2];
+        var flag = false;
+        var i = 3;
+        while(i <= 100) {
+           for(let j = 4; j < i; j++) {
+               if(i % j == 0) {
+                   flag = false;
+                   break;
+               }
+               flag = true;
+           }
+            if(flag) simple.push(i);
+
+            i += 2;
+        }
+
+        console.log(simple);
+
+        //Задание 4
+        alert("Задание 4");
+        for(let i=0; i<10; console.log(i), i++) {}
+
+        //Задание 5
+        alert("Задание 5");
+        let x = "x";
+        for(let i = 0; i < 20; i++) {
+            console.log(x);
+            x = x + "x";
+        }
+        //Задание 2 и 3
+        alert("Задание 2 и 3");
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">E-shop</div>
+        <div class="cart">
+            <form action="#" class="search-form">
+                <input type="text" class="search-field">
+                <button class="btn-search" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <button class="btn-cart" type="button">Корзина</button>
+            <div class="cart-block invisible"></div>
+        </div>
+    </header>
+    <main>
+        <div class="products"></div>
+    </main>
+
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
