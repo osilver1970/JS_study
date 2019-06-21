@@ -1,0 +1,49 @@
+/*
+*{
+    margin: 0;
+    padding: 0;
+}
+*/
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.number_cell, .letter_cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+}
+
+.fig_cell, .fig_black_cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fig_black_cell {
+    color: lime;
+}
+
+.fig_cell {
+    color: fuchsia;
+}
+
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 520px;
+    height: 520px;
+}
+div {
+    min-width: 50px;
+    min-height: 50px;
+    border: 1px solid black;
+}
+
+.black_cell {
+    background-color: black;
+}
