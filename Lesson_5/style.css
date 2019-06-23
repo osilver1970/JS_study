@@ -14,35 +14,26 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid white;
+    background-color: coral;
 }
 
-.fig_cell, .fig_black_cell {
+.fig_cell {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.fig_black_cell {
-    color: lime;
-}
-
-.fig_cell {
-    color: fuchsia;
-}
-
 .content {
     display: flex;
     flex-wrap: wrap;
-    width: 520px;
-    height: 520px;
+    min-width: 250px;
+    min-height: 250px;
 }
 div {
-    min-width: 50px;
-    min-height: 50px;
-    border: 1px solid black;
+    width: 25px;
+    height: 25px;
 }
 
 .black_cell {
-    background-color: black;
+    background-color: firebrick;
 }

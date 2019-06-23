@@ -1,7 +1,8 @@
 function chessboard() {
     var bodyLayer = document.querySelector('body');
     var letters = 'ABCDEFGH';
-    var fig_letters = 'ЛКСФКСКЛ';
+    var fig_white = [`&#9814;`, `&#9816;`, '&#9815;', '&#9813;', '&#9812;', '&#9815;', '&#9816;', '&#9814;'];
+    var fig_black = [`&#9820;`, `&#9822;`, '&#9821;', '&#9819;', '&#9818;', '&#9821;', '&#9822;', '&#9820;'];
 
     var contentLayer = document.createElement('div');
     contentLayer.classList.add('content');
@@ -29,16 +30,16 @@ function chessboard() {
             } 
             
             if((j == 2 || j == 7) && i != 0 && i != 9) {
-                chessCell.textContent = "П";
-                if(j == 7) chessCell.classList.add('fig_black_cell');
-                else chessCell.classList.add('fig_cell');
+                chessCell.classList.add('fig_cell');
+                if(j == 7) chessCell.innerHTML = `&#9817`;
+                else chessCell.innerHTML = `&#9823`;
                 
             }
             
             if((j == 1 || j == 8) && i != 0 && i != 9) {
-                chessCell.textContent = fig_letters[i-1];
-                if(j == 8) chessCell.classList.add('fig_black_cell');
-                else chessCell.classList.add('fig_cell');
+                chessCell.classList.add('fig_cell');
+                if(j == 8) chessCell.innerHTML = `${fig_white[i-1]}`;
+                else chessCell.innerHTML = `${fig_black[i-1]}`;
             }
             
             contentLayer.appendChild(chessCell);
