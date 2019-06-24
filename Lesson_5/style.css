@@ -1,0 +1,39 @@
+/*
+*{
+    margin: 0;
+    padding: 0;
+}
+*/
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.number_cell, .letter_cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: coral;
+}
+
+.fig_cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 250px;
+    min-height: 250px;
+}
+div {
+    width: 25px;
+    height: 25px;
+}
+
+.black_cell {
+    background-color: firebrick;
+}
