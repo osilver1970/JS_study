@@ -57,7 +57,7 @@
     <script>
         var images = document.querySelectorAll('.gallery');
         
-        var mainPic = document.querySelector('#main');
+        let mainPic = document.querySelector('#main');
         
         var roulette = document.querySelector('#roulette');
         
@@ -68,23 +68,36 @@
                 mainPic.src = evt.target.src
                 console.log(evt)
             }
+                
             if (evt.target.id === 'left') {
+                
                 for(let i = 0; i < images.length; i++) {
                     if (images[i].src === mainPic.src) {
-                        if(images[i].previousElementSibling == null) break;
+                        
+                        if(images[i].previousElementSibling == null) {
+                            mainPic.src = `gallery/7.jpg`;
+                            break;
+                        }
                         mainPic.src = images[i].previousElementSibling.src;
                         break;
                     }
                 }
             }
             if (evt.target.id === 'right') {
+        
                 for(let i = 0; i < images.length; i++) {
+                    
                     if (images[i].src === mainPic.src) {
-                        if(images[i].nextElementSibling == null) break;
+                        
+                        if(images[i].nextElementSibling == null) {
+                            mainPic.src = `gallery/1.jpg`;
+                            break;
+                        }
                         mainPic.src = images[i].nextElementSibling.src;
                         break;
                     }
                 }
+                        
             }
         }
 
