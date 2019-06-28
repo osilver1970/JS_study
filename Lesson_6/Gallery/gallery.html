@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #roulette {
+            display: flex;
+            justify-content: center;
+            height: 150px;
+            margin: 20px;
+        }
+
+        #roulette img {
+            width: 100px;
+            margin: 5px
+        }
+
+        #wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 400px;
+            width: 733px;
+            padding: 40px 10px;
+            margin: 0 auto;
+        }
+
+        button {
+            height: 40px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="gallery">
+
+        <div id="wrapper">
+            <button id="left"><<</button> 
+            <img src="gallery/1.jpg" alt="" id="main" height="400px">
+            <button id="right">>></button>
+        </div>
+
+        <div id="roulette">
+            <img src="gallery/1.jpg" class = "gallery" alt="1">
+            <img src="gallery/2.jpg" class = "gallery" alt="2">
+            <img src="gallery/3.jpg" class = "gallery" alt="3">
+            <img src="gallery/4.jpg" class = "gallery" alt="4">
+            <img src="gallery/5.jpg" class = "gallery" alt="5">
+            <img src="gallery/6.jpg" class = "gallery" alt="6">
+            <img src="gallery/7.jpg" class = "gallery" alt="7">
+        </div>
+
+    </div>
+    <script>
+        var images = document.querySelectorAll('.gallery');
+        
+        let mainPic = document.querySelector('#main');
+        
+        var roulette = document.querySelector('#roulette');
+        
+        document.querySelector('#gallery').addEventListener('click', gallery);
+
+        function gallery(evt) {
+            if (evt.target.tagName === 'IMG' && evt.target.parentElement.id === 'roulette') {
+                mainPic.src = evt.target.src
+                console.log(evt)
+            }
+                
+            if (evt.target.id === 'left') {
+                
+                for(let i = 0; i < images.length; i++) {
+                    if (images[i].src === mainPic.src) {
+                        
+                        if(images[i].previousElementSibling == null) {
+                            mainPic.src = `gallery/7.jpg`;
+                            break;
+                        }
+                        mainPic.src = images[i].previousElementSibling.src;
+                        break;
+                    }
+                }
+            }
+            if (evt.target.id === 'right') {
+        
+                for(let i = 0; i < images.length; i++) {
+                    
+                    if (images[i].src === mainPic.src) {
+                        
+                        if(images[i].nextElementSibling == null) {
+                            mainPic.src = `gallery/1.jpg`;
+                            break;
+                        }
+                        mainPic.src = images[i].nextElementSibling.src;
+                        break;
+                    }
+                }
+                        
+            }
+        }
+
+    </script>
+</body>
+
+</html>
