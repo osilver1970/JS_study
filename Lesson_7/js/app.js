@@ -111,7 +111,7 @@ var startDraw = function (evt) {
 		circle(evt);
 	} else if (system.currentTool == 'txt') {
 		canvas.oncontextmenu = function() {fillText(evt)};
-		fillText(text);
+//		fillText("text"); не работает
 	}
 };
 
