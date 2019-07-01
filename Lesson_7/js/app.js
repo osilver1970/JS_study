@@ -11,6 +11,7 @@ var canvHeight = canvas.getAttribute('height');
 var xCoord = doc.getElementById('xCoord');
 var yCoord = doc.getElementById('yCoord');
 var ctx = canvas.getContext('2d');
+var toolButton = doc.querySelectorAll('.toolButton');
 
 
 var system = {
@@ -83,12 +84,20 @@ var addColor = function (evt) {
 var mouseActionsClick = function (evt) {
 	if (evt.target.classList.contains('toolButton') == true) {
 		renderSystem (system, 'currentTool', switchTool (evt.target));
+        for(let i = 0; i < toolButton.length; i++) {
+            toolButton[i].style.backgroundColor = '#DDD';
+            
+            if (toolButton[i].getAttribute('id') == system.currentTool) {
+                toolButton[i].style.backgroundColor = "green";
+            }
+        }
+        
 	} else if (evt.target.id == 'sizeSelect') {
 		renderSystem (system, 'brushSize', switchSize (evt.target));
 	} else if (evt.target.classList.contains('def-color-button')) {
 		system.previousColor = system.currentColor;
 		renderSystem (system, 'currentColor', evt.target.style.backgroundColor);
-	}
+	} 
 };
 
 
@@ -110,9 +119,9 @@ var startDraw = function (evt) {
 	} else if (system.currentTool == 'circle') {
 		circle(evt);
 	} else if (system.currentTool == 'txt') {
-		canvas.oncontextmenu = function() {fillText(evt)};
-//		fillText("text"); не работает
-	}
+        canvas.oncontextmenu = function () {return false};
+        canvasText(evt);
+        }
 };
 
 var endDraw = function (evt) {
@@ -229,6 +238,7 @@ var txtEditorCreating = function (evt) {
 	input.setAttribute('type', 'text');
 	input.classList.add('text');
 	input.setAttribute("style", "top: " + evt.offsetY + "px" + "; " + "left: " + evt.offsetX + "px" + "; " + "font:" + system.brushSize + "px " + "Arial, serif;" + "color: " + system.currentColor + ";");
+    console.log(`currentColor txtEditorCreating ${system.currentColor}`);
 	var wrap = doc.getElementsByClassName('canv-wrapper').item(0);
 	wrap.appendChild(input);
 };
@@ -237,21 +247,40 @@ var txtEditorDeleting = function (evt) {
 	input.remove();	
 
 };
-var textDrawing = function (evt) {
-	if (evt.which == 3) {
-		txtEditorCreating(evt);
-	} else if (evt.which == 1) {
-		input = doc.getElementsByClassName('text').item(0);
-		ctx.beginPath();
-		ctx.font = system.brushSize + "px" + " Arial";
-		ctx.fillText(input.value, evt.offsetX, evt.offsetY);
-		txtEditorDeleting(evt);
-	}
+
+//Создание замыкания
+const makeTextDraw = function (evt) {
+
+    let startTyping = false;
+    var textDrawing = function (evt) {
+
+        console.log(`textDrawing ${startTyping}`);
+        if (evt.which == 3 && !startTyping) {
+            txtEditorCreating(evt);
+            startTyping = true;
+            console.log(`which == 3 ${startTyping}`);
+        } else if (evt.which == 1 && startTyping) {
+            console.log(`which == 1 ${startTyping}`);
+            input = doc.getElementsByClassName('text').item(0);
+            console.log(`input ${input.value}`);
+            ctx.beginPath();
+            ctx.fillStyle = system.currentColor;
+            ctx.font = system.brushSize + "px" + " Arial";
+            ctx.fillText(input.value, evt.offsetX, evt.offsetY);
+            console.log(`currentColor Witch ${system.currentColor}`);
+            txtEditorDeleting(evt);
+            startTyping = false;
+        }
+    }
+    
+    return textDrawing;
 };
+
+
 var canvasText = function (evt) {
 	let wind = doc.getElementsByClassName('canv-wrapper').item(0);
 	wind.oncontextmenu = function () {return false};
-	canvas.addEventListener('mousedown', textDrawing(evt));
+	canvas.addEventListener('mousedown', makeTextDraw(evt)); //Использование замыкания
 };
 
 
@@ -375,9 +404,6 @@ var fillPoligon = function (evt, color) {
 	console.log(col);
 	canvas.addEventListener('click', fillImageData(evt, col));
 };
-
-
-
 
 
 canvas.addEventListener ('mousemove', getCoordinates); //активация получения координат
