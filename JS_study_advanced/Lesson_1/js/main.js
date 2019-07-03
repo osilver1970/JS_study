@@ -13,7 +13,7 @@ const renderProduct = (title, price) => {
             </div>`;
 };
 
-const renderProducts = (arr) => {
+const renderProducts = arr => {
     const productsArr = arr.map((item) => {
         return renderProduct(item.title, item.price);
     });
