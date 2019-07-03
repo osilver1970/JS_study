@@ -253,12 +253,11 @@ const makeTextDraw = function (evt) {
 
     let startTyping = false;
     var textDrawing = function (evt) {
-
-        console.log(`textDrawing ${startTyping}`);
+        
         if (evt.which == 3 && !startTyping) {
             txtEditorCreating(evt);
             startTyping = true;
-            console.log(`which == 3 ${startTyping}`);
+
         } else if (evt.which == 1 && startTyping) {
             console.log(`which == 1 ${startTyping}`);
             input = doc.getElementsByClassName('text').item(0);
