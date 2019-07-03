@@ -37,7 +37,11 @@
 
 //Будет выведен глобальный объект window, так как null в нестрогом
 //режиме замещается глобальным объектом.
+
+var person = {name: 'name', age: 'ghu'};
+
+a.call(null);
+
 function a() {
     alert(this);
 }
-a.call(null);
