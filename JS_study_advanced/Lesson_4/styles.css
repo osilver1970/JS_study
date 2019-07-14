@@ -25,11 +25,13 @@ body {
     margin: 0 auto;
     padding-top: 20px;
 }
+
 form {
     margin-top: 20px;
     padding: 10px;
     width: 100%;
 }
+
 .message {
     width: 100%;
     resize: none;
@@ -39,10 +41,12 @@ form {
     border: black 1px solid;
     box-sizing: border-box;
 }
+
 .btns {
     display: flex;
     justify-content: space-between;
 }
+
 .btn_name {
     height: 50px;
     width: 33.33%;

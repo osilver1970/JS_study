@@ -42,7 +42,6 @@ const changeD_S = function (str) {
 const changeS_D = function (str) {
     str = str.replace(/(\s)'/g, "$1\"");
     str = str.replace(/'(\s)/g, "\"$1");
-    
     return str;
 }
 
